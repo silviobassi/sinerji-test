@@ -7,8 +7,10 @@ import java.time.YearMonth;
 import java.util.List;
 import java.util.Optional;
 
-public interface Payment {
+public class Payment {
 
-    Optional<BigDecimal> getTotalPayment(List<Employee> employees, YearMonth yearMonth);
+    public static Optional<BigDecimal>  setPayment(PaymentService paymentService, List<Employee> employees, YearMonth yearMonth){
+        return paymentService.getPayment(employees, yearMonth);
+    }
 
 }

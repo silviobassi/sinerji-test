@@ -1,9 +1,12 @@
 package org.sinerji.models;
 
+import org.sinerji.enums.Office;
+
 import java.math.BigDecimal;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Sale {
 
@@ -34,7 +37,6 @@ public class Sale {
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -52,19 +54,17 @@ public class Sale {
     }
 
     @Override
-    public String toString() {
+    public String
+    toString() {
         return "Sale{" +
                 "yearMonth=" + yearMonth +
                 ", value=" + value +
                 '}';
     }
 
+
     public boolean isYearAndMonth(YearMonth yearMonth){
         return getYearMonth().equals(yearMonth);
     }
 
-    public static List<Sale> empppp(Employee employee, YearMonth yearMonth){
-        return employee.getSales().stream()
-                .filter(seller -> seller.isYearAndMonth(yearMonth)).toList();
-    }
 }

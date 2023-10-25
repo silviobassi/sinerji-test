@@ -4,31 +4,32 @@ import org.sinerji.enums.AllowanceType;
 import org.sinerji.enums.BenefitType;
 
 import java.math.BigDecimal;
+import java.time.YearMonth;
+import java.util.List;
 import java.util.Objects;
 
 public class SalaryDescription {
 
-
-    public SalaryDescription(BigDecimal value, BigDecimal allowance, AllowanceType allowanceType, BigDecimal benefit, BenefitType benefitType) {
-        this.value = value;
-        this.allowance = allowance;
-        this.allowanceType = allowanceType;
-        this.benefit = benefit;
-        this.benefitType = benefitType;
-    }
-
-    private BigDecimal value;
+    private BigDecimal payment;
 
 
     private BigDecimal allowance;
 
     private AllowanceType allowanceType;
-    private BigDecimal benefit;
 
     private BenefitType benefitType;
 
-    public BigDecimal getValue() {
-        return value;
+
+
+
+    public SalaryDescription(BigDecimal payment, BigDecimal allowance, AllowanceType allowanceType) {
+        this.payment = payment;
+        this.allowance = allowance;
+        this.allowanceType = allowanceType;
+    }
+
+    public BigDecimal getPayment() {
+        return payment;
     }
 
     public BigDecimal getAllowance() {
@@ -39,13 +40,14 @@ public class SalaryDescription {
         return allowanceType;
     }
 
-    public BigDecimal getBenefit() {
-        return benefit;
-    }
-
     public BenefitType getBenefitType() {
         return benefitType;
     }
+
+    public void setBenefitType(BenefitType benefitType) {
+        this.benefitType = benefitType;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -54,31 +56,18 @@ public class SalaryDescription {
 
         SalaryDescription that = (SalaryDescription) o;
 
-        if (!Objects.equals(value, that.value)) return false;
+        if (!Objects.equals(payment, that.payment)) return false;
         if (!Objects.equals(allowance, that.allowance)) return false;
         if (allowanceType != that.allowanceType) return false;
-        if (!Objects.equals(benefit, that.benefit)) return false;
         return benefitType == that.benefitType;
     }
 
     @Override
     public int hashCode() {
-        int result = value != null ? value.hashCode() : 0;
+        int result = payment != null ? payment.hashCode() : 0;
         result = 31 * result + (allowance != null ? allowance.hashCode() : 0);
         result = 31 * result + (allowanceType != null ? allowanceType.hashCode() : 0);
-        result = 31 * result + (benefit != null ? benefit.hashCode() : 0);
         result = 31 * result + (benefitType != null ? benefitType.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "SalaryDescription{" +
-                "value=" + value +
-                ", allowance=" + allowance +
-                ", allowanceType=" + allowanceType +
-                ", benefit=" + benefit +
-                ", benefitType=" + benefitType +
-                '}';
     }
 }

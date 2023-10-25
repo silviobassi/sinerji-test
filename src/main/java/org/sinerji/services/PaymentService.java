@@ -7,6 +7,6 @@ import java.time.YearMonth;
 import java.util.List;
 import java.util.Optional;
 
-public interface Greater {
-    Optional<BigDecimal> payment(List<Employee> employees, YearMonth yearMonth);
+public interface PaymentService {
+    Optional<BigDecimal> getPayment(List<Employee> employees, YearMonth yearMonth);
 }
