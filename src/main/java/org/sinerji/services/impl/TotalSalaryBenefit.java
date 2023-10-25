@@ -40,5 +40,5 @@ public class TotalSalaryBenefit implements PaymentService {
         return totalSalaryManager.add(totalSalarySecretary.multiply(BigDecimal.ONE.add(Secretary.BENEFIT)))
                 .add(totalSalarySeller.add(totalBenefitsSeller.multiply(Seller.BENEFIT)));
     }
-    
+
 }

@@ -29,4 +29,6 @@ public class Secretary extends Employee{
                 ", salaryDescription=" + salaryDescription +
                 '}';
     }
+
+
 }

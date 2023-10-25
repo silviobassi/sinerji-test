@@ -110,4 +110,16 @@ public class Employee{
                 ", yearsMonthsPayment=" + yearsMonthsPayment +
                 '}';
     }
+
+    public boolean isSeller(){
+        return getOffice().equals(Office.SELLER);
+    }
+
+    public boolean isSecretary(){
+        return getOffice().equals(Office.SECRETARY);
+    }
+
+    public boolean isManager(){
+        return getOffice().equals(Office.MANAGER);
+    }
 }

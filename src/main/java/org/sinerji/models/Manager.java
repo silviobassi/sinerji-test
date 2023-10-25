@@ -23,4 +23,6 @@ public class Manager extends Employee {
                 ", salaryDescription=" + salaryDescription +
                 '}';
     }
+
+
 }

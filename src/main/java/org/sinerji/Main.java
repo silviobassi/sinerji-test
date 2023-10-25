@@ -3,9 +3,11 @@ package org.sinerji;
 import org.sinerji.enums.AllowanceType;
 import org.sinerji.models.*;
 import org.sinerji.services.Payment;
+import org.sinerji.services.Received;
 import org.sinerji.services.impl.TotalJustBenefit;
 import org.sinerji.services.impl.TotalJustSalary;
 import org.sinerji.services.impl.TotalSalaryBenefit;
+import org.sinerji.services.impl.WhoReceivedTheMost;
 
 import java.math.BigDecimal;
 import java.time.Month;
@@ -63,12 +65,12 @@ public class Main {
 
         Manager managerJuliana = new Manager("Juliana Alves", YearMonth.of(2017, Month.JULY), salaryDescriptionSManager);
         managerJuliana.setYearsMonthsPayment(List.of(YearMonth.of(2017, Month.JULY), YearMonth.of(2017, Month.AUGUST),
-                YearMonth.of(2018, Month.MARCH), YearMonth.of(2022, Month.APRIL), YearMonth.of(2018, Month.MAY),
+                YearMonth.of(2022, Month.MARCH), YearMonth.of(2022, Month.APRIL), YearMonth.of(2018, Month.MAY),
                 YearMonth.of(2018, Month.JUNE)));
 
         Manager managerBento = new Manager("Bento Albino", YearMonth.of(2014, Month.MARCH), salaryDescriptionSManager);
         managerBento.setYearsMonthsPayment(List.of(YearMonth.of(2014, Month.MARCH), YearMonth.of(2017, Month.APRIL),
-                YearMonth.of(2018, Month.MARCH), YearMonth.of(2018, Month.MAY),
+                YearMonth.of(2022, Month.MARCH), YearMonth.of(2018, Month.MAY),
                 YearMonth.of(2018, Month.JUNE)));
 
         List<Employee> employees = List.of(secretaryJorge, secretaryMaria, sellerAna, sellerJoao, managerJuliana, managerBento);
@@ -83,6 +85,12 @@ public class Main {
         System.out.println("----------------------------------------------------------------");
         System.out.println("Total somente de benefícios do mês: " + Payment.setPayment(
                 new TotalJustBenefit(), employees, YearMonth.of(2022, Month.APRIL)));
+        System.out.println("----------------------------------------------------------------");
+
+
+        System.out.println("Funcionários que receberam o valor mais alto do mês:");
+        Received.setEmployeeReceived(new WhoReceivedTheMost(), YearMonth.of(2022, Month.MARCH), employees)
+                .forEach(employee -> System.out.println(employee.getName()));
         System.out.println("----------------------------------------------------------------");
     }
 }
