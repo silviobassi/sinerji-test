@@ -1,12 +1,8 @@
 package org.sinerji.models;
 
-import org.sinerji.enums.Office;
-
 import java.math.BigDecimal;
 import java.time.YearMonth;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class Sale {
 

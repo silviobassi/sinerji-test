@@ -1,4 +1,4 @@
-package org.sinerji.utils.calculate;
+package org.sinerji.infra;
 
 import org.sinerji.models.Employee;
 

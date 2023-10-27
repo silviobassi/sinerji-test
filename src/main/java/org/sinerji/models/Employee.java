@@ -2,11 +2,14 @@ package org.sinerji.models;
 
 import org.sinerji.enums.Office;
 
+import java.math.BigDecimal;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
-public class Employee{
+public class Employee implements FindEmployeeWithHighestPay {
 
     private String name;
     private YearMonth yearMonthHiring;
@@ -20,6 +23,9 @@ public class Employee{
     public Employee(String name, YearMonth yearMonthHiring) {
         this.name = name;
         this.yearMonthHiring = yearMonthHiring;
+    }
+
+    public Employee() {
     }
 
     public String getName() {
@@ -111,15 +117,43 @@ public class Employee{
                 '}';
     }
 
-    public boolean isSeller(){
+    public boolean isSeller() {
         return getOffice().equals(Office.SELLER);
     }
 
-    public boolean isSecretary(){
+    public boolean isSecretary() {
         return getOffice().equals(Office.SECRETARY);
     }
 
-    public boolean isManager(){
+    public boolean isManager() {
         return getOffice().equals(Office.MANAGER);
+    }
+
+    public Optional<BigDecimal> sumSalary(Employee employee) {
+        return Optional.ofNullable(employee.getSalaryDescription().getPayment());
+    }
+
+    @Override
+    public void toTheEmployee(Employee employee, Set<EmployeeGreater> employeesGreaterList) {
+        if (employee.isSecretary()) {
+            EmployeeGreater employeeGreater = new EmployeeGreater(
+                    employee.getName(),
+                    new Secretary().sumBenefit(employee).orElse(BigDecimal.ZERO)
+
+            );
+            employeesGreaterList.add(employeeGreater);
+        }
+    }
+
+    @Override
+    public void toTheEmployee(Employee employee, Set<EmployeeGreater> employeesGreaterList, YearMonth yearMonth) {
+        if (employee.isSeller()) {
+            EmployeeGreater employeeGreater = new EmployeeGreater(
+                    employee.getName(),
+                    new Seller().sumBenefit(yearMonth, employee).orElse(BigDecimal.ZERO)
+
+            );
+            employeesGreaterList.add(employeeGreater);
+        }
     }
 }

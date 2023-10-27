@@ -3,11 +3,8 @@ package org.sinerji;
 import org.sinerji.enums.AllowanceType;
 import org.sinerji.models.*;
 import org.sinerji.services.Payment;
-import org.sinerji.services.Received;
-import org.sinerji.services.impl.TotalJustBenefit;
-import org.sinerji.services.impl.TotalJustSalary;
-import org.sinerji.services.impl.TotalSalaryBenefit;
-import org.sinerji.services.impl.WhoReceivedTheMost;
+import org.sinerji.services.ReceivedProcessed;
+import org.sinerji.services.impl.*;
 
 import java.math.BigDecimal;
 import java.time.Month;
@@ -69,8 +66,8 @@ public class Main {
                 YearMonth.of(2018, Month.JUNE)));
 
         Manager managerBento = new Manager("Bento Albino", YearMonth.of(2014, Month.MARCH), salaryDescriptionSManager);
-        managerBento.setYearsMonthsPayment(List.of(YearMonth.of(2014, Month.MARCH), YearMonth.of(2017, Month.APRIL),
-                YearMonth.of(2022, Month.MARCH), YearMonth.of(2018, Month.MAY),
+        managerBento.setYearsMonthsPayment(List.of(YearMonth.of(2014, Month.MARCH),
+                YearMonth.of(2022, Month.APRIL), YearMonth.of(2018, Month.MAY),
                 YearMonth.of(2018, Month.JUNE)));
 
         List<Employee> employees = List.of(secretaryJorge, secretaryMaria, sellerAna, sellerJoao, managerJuliana, managerBento);
@@ -78,19 +75,26 @@ public class Main {
         List<Seller> sellers = List.of(sellerAna, sellerJoao);
 
        System.out.println("Total de Salário e Benefícios do mês: " + Payment.setPayment(
-                new TotalSalaryBenefit(), employees, YearMonth.of(2022, Month.APRIL)));
+                new TotalSalaryBenefitImpl(), employees, YearMonth.of(2022, Month.APRIL)));
         System.out.println("----------------------------------------------------------------");
         System.out.println("Total de do mês: " + Payment.setPayment(
-                new TotalJustSalary(), employees, YearMonth.of(2022, Month.APRIL)));
+                new TotalJustSalaryImpl(), employees, YearMonth.of(2022, Month.APRIL)));
         System.out.println("----------------------------------------------------------------");
         System.out.println("Total somente de benefícios do mês: " + Payment.setPayment(
-                new TotalJustBenefit(), employees, YearMonth.of(2022, Month.APRIL)));
+                new TotalJustBenefitImpl(), employees, YearMonth.of(2022, Month.APRIL)));
         System.out.println("----------------------------------------------------------------");
 
 
-        System.out.println("Funcionários que receberam o valor mais alto do mês:");
-        Received.setEmployeeReceived(new WhoReceivedTheMost(), YearMonth.of(2022, Month.MARCH), employees)
-                .forEach(employee -> System.out.println(employee.getName()));
+        System.out.println("Funcionários que receberam o valor mais alto do mês: "
+                + ReceivedProcessed.whoWonTheMost(new WhoReceivedHighestSalaryBenefitsImpl(), YearMonth.of(2022, Month.APRIL), employees));
+        System.out.println("----------------------------------------------------------------");
+
+        System.out.println("Funcionários que receberam o benefício mais alto do mês: "
+                + ReceivedProcessed.whoWonTheMost(new WhoReceivedBiggestBenefitImpl(), YearMonth.of(2022, Month.APRIL), employees));
+        System.out.println("----------------------------------------------------------------");
+
+        System.out.println("Vendedor que mais vendeu no mês: "
+                + ReceivedProcessed.whoSoldTheMost(new WhoSoldTheMostImpl(), YearMonth.of(2022, Month.APRIL), sellers));
         System.out.println("----------------------------------------------------------------");
     }
 }

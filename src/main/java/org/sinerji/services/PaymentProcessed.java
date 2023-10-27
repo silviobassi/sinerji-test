@@ -1,7 +1,7 @@
 package org.sinerji.services;
 
 import org.sinerji.models.Employee;
-import org.sinerji.utils.calculate.CalculatePaymentService;
+import org.sinerji.infra.CalculatePaymentService;
 
 import java.math.BigDecimal;
 import java.time.YearMonth;

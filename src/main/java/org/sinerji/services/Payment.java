@@ -9,8 +9,8 @@ import java.util.Optional;
 
 public class Payment {
 
-    public static Optional<BigDecimal>  setPayment(PaymentService paymentService, List<Employee> employees, YearMonth yearMonth){
-        return paymentService.getPayment(employees, yearMonth);
+    public static Optional<BigDecimal>  setPayment(TotalPaymentService totalPaymentService, List<Employee> employees, YearMonth yearMonth){
+        return totalPaymentService.getPayment(employees, yearMonth);
     }
 
 }

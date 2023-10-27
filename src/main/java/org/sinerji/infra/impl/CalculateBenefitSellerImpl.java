@@ -1,17 +1,17 @@
-package org.sinerji.utils.calculate.impl;
+package org.sinerji.infra.impl;
 
 import org.sinerji.enums.BenefitType;
 import org.sinerji.enums.Office;
+import org.sinerji.infra.CalculateBenefitService;
 import org.sinerji.models.Employee;
 import org.sinerji.models.Seller;
-import org.sinerji.utils.calculate.CalculateBenefitService;
 
 import java.math.BigDecimal;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Optional;
 
-public class CalculateBenefitSeller implements CalculateBenefitService {
+public class CalculateBenefitSellerImpl implements CalculateBenefitService {
 
 
     @Override

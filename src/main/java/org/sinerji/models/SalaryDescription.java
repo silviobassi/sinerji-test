@@ -4,23 +4,17 @@ import org.sinerji.enums.AllowanceType;
 import org.sinerji.enums.BenefitType;
 
 import java.math.BigDecimal;
-import java.time.YearMonth;
-import java.util.List;
 import java.util.Objects;
 
 public class SalaryDescription {
 
     private BigDecimal payment;
 
-
     private BigDecimal allowance;
 
     private AllowanceType allowanceType;
 
     private BenefitType benefitType;
-
-
-
 
     public SalaryDescription(BigDecimal payment, BigDecimal allowance, AllowanceType allowanceType) {
         this.payment = payment;
