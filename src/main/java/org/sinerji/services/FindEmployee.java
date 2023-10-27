@@ -8,7 +8,7 @@ import java.time.YearMonth;
 import java.util.List;
 import java.util.Set;
 
-public class ReceivedProcessed {
+public class FindEmployee {
 
     public static Set<EmployeeGreater> whoSoldTheMost(WhoReceivedTheMostService<Seller> whoReceivedTheMostService,
                                                      YearMonth yearMonth,

@@ -3,7 +3,7 @@ package org.sinerji;
 import org.sinerji.enums.AllowanceType;
 import org.sinerji.models.*;
 import org.sinerji.services.Payment;
-import org.sinerji.services.ReceivedProcessed;
+import org.sinerji.services.FindEmployee;
 import org.sinerji.services.impl.*;
 
 import java.math.BigDecimal;
@@ -74,27 +74,27 @@ public class Main {
 
         List<Seller> sellers = List.of(sellerAna, sellerJoao);
 
-       System.out.println("Total de Salário e Benefícios do mês: " + Payment.setPayment(
+       System.out.println("Total de Salário e Benefícios do mês: " + Payment.getPayment(
                 new TotalSalaryBenefitImpl(), employees, YearMonth.of(2022, Month.APRIL)));
         System.out.println("----------------------------------------------------------------");
-        System.out.println("Total de do mês: " + Payment.setPayment(
+        System.out.println("Total de do mês: " + Payment.getPayment(
                 new TotalJustSalaryImpl(), employees, YearMonth.of(2022, Month.APRIL)));
         System.out.println("----------------------------------------------------------------");
-        System.out.println("Total somente de benefícios do mês: " + Payment.setPayment(
+        System.out.println("Total somente de benefícios do mês: " + Payment.getPayment(
                 new TotalJustBenefitImpl(), employees, YearMonth.of(2022, Month.APRIL)));
         System.out.println("----------------------------------------------------------------");
 
 
         System.out.println("Funcionários que receberam o valor mais alto do mês: "
-                + ReceivedProcessed.whoWonTheMost(new WhoReceivedHighestSalaryBenefitsImpl(), YearMonth.of(2022, Month.APRIL), employees));
+                + FindEmployee.whoWonTheMost(new WhoReceivedHighestSalaryBenefitsImpl(), YearMonth.of(2022, Month.APRIL), employees));
         System.out.println("----------------------------------------------------------------");
 
         System.out.println("Funcionários que receberam o benefício mais alto do mês: "
-                + ReceivedProcessed.whoWonTheMost(new WhoReceivedBiggestBenefitImpl(), YearMonth.of(2022, Month.APRIL), employees));
+                + FindEmployee.whoWonTheMost(new WhoReceivedBiggestBenefitImpl(), YearMonth.of(2022, Month.APRIL), employees));
         System.out.println("----------------------------------------------------------------");
 
         System.out.println("Vendedor que mais vendeu no mês: "
-                + ReceivedProcessed.whoSoldTheMost(new WhoSoldTheMostImpl(), YearMonth.of(2022, Month.APRIL), sellers));
+                + FindEmployee.whoSoldTheMost(new WhoSoldTheMostImpl(), YearMonth.of(2022, Month.APRIL), sellers));
         System.out.println("----------------------------------------------------------------");
     }
 }
